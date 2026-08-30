@@ -220,14 +220,13 @@ DISEASE_DB = {
 # ---------- Load Model ----------
 @st.cache_resource
 def load_model():
-    model = tf.keras.models.load_model("crop_disease_model_all.h5", compile=False, safe_mode=False)
+    model = tf.keras.models.load_model("crop_disease_model_all.h5", compile=False)
     with open("class_indices.json", "r") as f:
         class_indices = json.load(f)
     idx_to_class = {v: k for k, v in class_indices.items()}
     return model, idx_to_class
 
 model, idx_to_class = load_model()
-
 # ---------- UI ----------
 st.title(TEXT["title"][LANG])
 st.subheader(TEXT["subtitle"][LANG])
